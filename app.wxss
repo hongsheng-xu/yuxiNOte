@@ -1,0 +1,8 @@
+page {
+  position: relative;
+  --themeColor: #458E86;
+  --fontSize: 30rpx;
+}
+.warp {
+  position: absolute;
+}

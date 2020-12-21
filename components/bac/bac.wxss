@@ -1,0 +1,27 @@
+.bac {
+  position: relative;
+}
+.bac .bac_barTop {
+  background-color: var(--themeColor);
+}
+.bac .bac_barTop .bac_title {
+  position: absolute;
+  font-size: 1em;
+  color: #fff;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.bac .bac_barBot {
+  background-color: var(--themeColor);
+}
+.bac .bac_body {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  background: url('https://images-1300732204.cos.ap-chengdu.myqcloud.com/MarkDown/bac.png') no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}

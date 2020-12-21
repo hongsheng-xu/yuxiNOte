@@ -1,0 +1,29 @@
+.bac {
+  position: absolute;
+  width: 100vw;
+  height: 90vh;
+  z-index: 0;
+  background-color: #458E86;
+}
+.content {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+}
+.content .op {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1rem;
+  color: #fff;
+  white-space: nowrap;
+}
+.content .op .by_me {
+  padding: 5rpx 10rpx;
+}
+.content .op .by_share {
+  padding: 5rpx 10rpx;
+}
+.content .op .weixi {
+  padding: 5rpx 10rpx;
+}

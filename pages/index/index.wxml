@@ -1,0 +1,12 @@
+<!-- pages/index/index.wxml -->
+<bac></bac>
+<view class="warp">
+    <view class="bac"></view>
+    <view class="content">
+        <view class="op">
+            <view class="by_me">由我创建</view>
+            <view class="by_share">来源分享</view>
+            <view class="weixi">微信文件</view>
+        </view>
+    </view>
+</view>

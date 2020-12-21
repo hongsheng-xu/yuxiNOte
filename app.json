@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "bac": "/components/bac/bac"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

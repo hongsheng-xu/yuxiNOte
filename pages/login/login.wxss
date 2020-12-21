@@ -1,0 +1,78 @@
+.bac1 {
+  position: absolute;
+  z-index: 0;
+  width: 100vw;
+  height: 20vh;
+  background-color: var(--themeColor);
+}
+.bac2 {
+  position: absolute;
+  z-index: 0;
+  width: 75vw;
+  height: 50vh;
+  top: 25vh;
+  right: 0;
+  background-color: var(--themeColor);
+}
+.userinfo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0);
+  top: 160%;
+  z-index: 3;
+  width: 575rpx;
+  height: 265rpx;
+  border-radius: 20rpx;
+  background-color: #efeeee;
+  box-shadow: 0 0 40rpx -15rpx black;
+}
+.userinfo .userinfo-avatar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -150%);
+  width: 150rpx;
+  height: 150rpx;
+  border: 5rpx solid #efeeee;
+  border-radius: 50%;
+}
+.userinfo .userinfo-nickname {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -80%);
+  font-size: 50rpx;
+}
+.userinfo .userinfo-motto {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 50%);
+  white-space: nowrap;
+  color: #aaaaaa;
+  font-size: var(--fontSize);
+}
+.userinfo-personal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0);
+  z-index: 3;
+  top: 450%;
+  width: 575rpx;
+  height: 590rpx;
+  border-radius: 20rpx;
+  background-color: #efeeee;
+  box-shadow: 0 0 40rpx -15rpx black;
+}
+.userinfo-personal .item {
+  width: 90%;
+  margin: 10rpx auto;
+  padding-top: 50rpx;
+  font-size: var(--fontSize);
+  border-bottom: 4rpx solid #f5f4f4;
+}
+.userinfo-personal .item text {
+  padding-left: 140rpx;
+}

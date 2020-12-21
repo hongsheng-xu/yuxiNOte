@@ -1,0 +1,23 @@
+<!-- pages/login/login.wxml -->
+<bac title="我的"></bac>
+<view class="bac1"></view>
+<view class="bac2"></view>
+<view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        登录
+    </button>
+    <block wx:else>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class="userinfo-motto">{{motto}}</text>
+    </block>
+</view>
+<view class="userinfo-personal">
+    <view class="list">
+        <view class="item"><text>性别: 男</text></view>
+        <view class="item"><text>年龄: 20</text></view>
+        <view class="item"><text>所在地: 重庆</text></view>
+        <view class="item"><text>手机号: 12345678910</text></view>
+        <view class="item"><text>微信: 12345</text></view>
+    </view>
+</view>

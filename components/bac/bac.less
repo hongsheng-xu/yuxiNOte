@@ -1,0 +1,36 @@
+@titleColor : #fff;
+@bacColor   : var(--themeColor);
+@fontSize   : 1em;
+@bacImage   : 'https://images-1300732204.cos.ap-chengdu.myqcloud.com/MarkDown/bac.png';
+
+.bac {
+    position: relative;
+
+    .bac_barTop {
+        background-color: @bacColor;
+
+        .bac_title {
+            position : absolute;
+            font-size: @fontSize;
+            color    : @titleColor;
+            z-index  : 2;
+            left     : 50%;
+            top      : 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .bac_barBot {
+        background-color: @bacColor;
+    }
+
+    .bac_body {
+        position       : absolute;
+        z-index        : 1;
+        top            : 0;
+        background     : url(@bacImage) no-repeat;
+        background-size: cover;
+        height         : 100vh;
+        width          : 100vw;
+    }
+}

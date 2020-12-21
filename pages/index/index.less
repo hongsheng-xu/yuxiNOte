@@ -1,0 +1,30 @@
+@baseFontSize: 1rem;
+.bac{
+    position: absolute;
+    width: 100vw;
+    height: 90vh;
+    z-index: 0;
+    background-color: #458E86;
+}
+.content {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    .op{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: @baseFontSize;
+        color: #fff;
+        white-space: nowrap;
+        .by_me{
+             padding: 5rpx 10rpx;
+        }
+        .by_share{
+            .by_me();
+        }
+        .weixi{
+            .by_me();
+        }
+    }
+}
