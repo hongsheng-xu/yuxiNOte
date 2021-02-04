@@ -1,0 +1,3 @@
+<!--pages/writenote/writenote.wxml-->
+<text>pages/writenote/writenote.wxml</text>
+<tabBar pageIndex="1"></tabBar>

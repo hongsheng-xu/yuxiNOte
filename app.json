@@ -1,13 +1,38 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/writenote/writenote"
   ],
   "window": {
     "navigationStyle": "custom"
   },
   "usingComponents": {
-    "bac": "/components/bac/bac"
+    "bac": "/components/bac/bac",
+    "tabBar": "/components/tabBar/tabBar"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/images/index.png",
+        "selectedIconPath": "/images/index_act.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/writenote/writenote",
+        "iconPath": "/images/writenote.png",
+        "selectedIconPath": "/images/writenote.png",
+        "text": "笔记"
+      },
+      {
+        "pagePath": "pages/login/login",
+        "iconPath": "/images/login.png",
+        "selectedIconPath": "/images/login_act.png",
+        "text": "登录"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -10,3 +10,4 @@
         </view>
     </view>
 </view>
+<tabBar pageIndex="0"></tabBar>
