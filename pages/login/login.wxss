@@ -106,6 +106,6 @@
 .leaf {
   position: fixed;
   z-index: 5;
-  bottom: 150rpx;
+  bottom: 120rpx;
   width: 30vw;
 }
