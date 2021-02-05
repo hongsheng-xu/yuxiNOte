@@ -28,5 +28,5 @@
   right: 0;
   width: 50vw;
   z-index: 1;
-  bottom: 110rpx;
+  bottom: 100rpx;
 }
