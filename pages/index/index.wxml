@@ -10,4 +10,39 @@
         </view>
     </view>
 </view>
+<movable-area class="moveable-container" scale-area="false">
+    <movable-view class="moveable-item-container" direction="vertical" out-of-bounds="false" damping="30" y="{{y}}">
+        <view class="moveable-icon"></view>
+        <view class="moveable-items">
+            <view class="moveable-item">
+                <text class="moveable-content">
+                    <text class="moveable-thing">记录今天发生的趣事</text>
+                    <text class="moveable-time">2020/10/23</text>
+                </text>
+                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+            </view>
+            <view class="moveable-item">
+                <text class="moveable-content">
+                    <text class="moveable-thing">我有一个快递要拿</text>
+                    <text class="moveable-time">2020/10/22</text>
+                </text>
+                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+            </view>
+            <view class="moveable-item">
+                <text class="moveable-content">
+                    <text class="moveable-thing">晚上记得看比赛</text>
+                    <text class="moveable-time">2020/10/21</text>
+                </text>
+                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+            </view>
+            <view class="moveable-item">
+                <text class="moveable-content">
+                    <text class="moveable-thing">语析笔记很不错</text>
+                    <text class="moveable-time">2020/10/20</text>
+                </text>
+                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+            </view>
+        </view>
+    </movable-view>
+</movable-area>
 <tabBar pageIndex="0"></tabBar>

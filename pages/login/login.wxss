@@ -73,9 +73,15 @@
   margin-right: 15rpx;
   padding-left: 140rpx;
 }
-.login_page .userinfo-personal .item text {
+.login_page .userinfo-personal .item .content {
   padding-left: 140rpx;
   font-size: 30rpx;
+}
+.login_page .userinfo-personal .item .content view {
+  display: inline;
+}
+.login_page .userinfo-personal .item .content .mail {
+  color: #aaaaaa;
 }
 .login_page .userinfo-personal .item button {
   display: inline-block;

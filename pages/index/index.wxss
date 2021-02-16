@@ -27,3 +27,60 @@
 .content .op .weixi {
   padding: 5rpx 10rpx;
 }
+.moveable-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  bottom: -40vh;
+  z-index: 1;
+}
+.moveable-container .moveable-item-container {
+  position: absolute;
+  width: 100%;
+  height: 60vh;
+  z-index: 1;
+  background-color: #efeeee;
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+}
+.moveable-container .moveable-item-container .moveable-icon {
+  width: 120rpx;
+  margin: 30rpx auto;
+  margin-bottom: 100rpx;
+  height: 15rpx;
+  border-radius: 7.5rpx;
+  background-image: linear-gradient(#dddddd, #b9c9c7);
+}
+.moveable-container .moveable-item-container .moveable-items .moveable-item {
+  width: 90%;
+  min-height: 20%;
+  margin: 30rpx auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 2rpx 2rpx 8rpx 2rpx #d8d8d8;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+}
+.moveable-container .moveable-item-container .moveable-items .moveable-item .moveable-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.moveable-container .moveable-item-container .moveable-items .moveable-item .moveable-content text {
+  display: block;
+  white-space: nowrap;
+}
+.moveable-container .moveable-item-container .moveable-items .moveable-item .moveable-content .moveable-thing {
+  font-size: 1em;
+  padding: 4rpx;
+}
+.moveable-container .moveable-item-container .moveable-items .moveable-item .moveable-content .moveable-time {
+  padding: 4rpx;
+  font-size: 0.7em;
+  color: #929292;
+}
+.moveable-container .moveable-item-container .moveable-items .moveable-item .moveable-delete {
+  width: 6%;
+}

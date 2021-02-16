@@ -1,6 +1,7 @@
 // pages/login/login.js//获取应用实例
-const app = getApp()
+const { request } = require('../../utils/request');
 const { pinyin } = require('../../utils/getChina');
+const { wxLogin } = require('../../utils/wxApi');
 
 Page({
   data: {
@@ -9,66 +10,88 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isCheckingInfo: false,
-    title: "我的"
+    title: "我的",
+    mail: ''
   },
-  onShow: function(){
+  onShow: function () {
+    let userInfo = wx.getStorageSync("userInfo");
+    if (userInfo) {
+      this.setData({
+        userInfo,
+        hasUserInfo: true
+      })
+    }
+    //列表初始化
     this.setData({
       isCheckingInfo: false,
       title: "我的"
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      app.globalData.userInfo.province=pinyin(app.globalData.userInfo.province)
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        res.userInfo.province = pinyin(res.userInfo.province);
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo;
-          res.userInfo.province = pinyin(res.userInfo.province);
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+  async getUserInfo(e) {
+    console.log(e);
+    var that = this;
+    let { userInfo } = e.detail;
+    userInfo.province = pinyin(userInfo.province);
+    if (e.detail.errMsg != "getUserInfo:fail auth deny") {
+      wxLogin()
+        .then(result => {
+          let data = {};
+          data.code = result.code;
+          data.avatarUrl = userInfo.avatarUrl;
+          data.gender = userInfo.gender;
+          data.nickName = userInfo.nickName;
+          data.province = userInfo.province;
+          console.log(data);
+          request({
+            "url": "/login",
+            data,
+            "method": "POST"
           })
-        }
-      })
+            .then(res => {
+              console.log(res);
+              if (res.data.code && res.data.code == 200) {
+                that.setData({
+                  userInfo: res.data.userInfo,
+                  hasUserInfo: true
+                })
+                wx.setStorageSync("userInfo", userInfo);
+                wx.setStorageSync("token", res.data.token)
+              } else {
+                //显示弹窗服务器获取id出错
+                console.log("显示弹窗服务器获取id出错");
+                return;
+              }
+            })
+            .catch(err=>{
+              console.log(err);
+              //服务器获取openid失败
+            })
+        })
+        .catch(err => {
+          console.log(err);
+          //显示弹窗.微信获取code失败
+          return;
+        })
+    } else {
+      console.log("此处展示弹窗用户拒绝授权");
     }
   },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo;
-    app.globalData.userInfo.province=pinyin(app.globalData.userInfo.province)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
   checkInfo: function () {
-    if(this.data.isCheckingInfo){
+    if (this.data.isCheckingInfo) {
       this.setData({
         isCheckingInfo: false,
         title: "我的"
       })
     }
-    else{
+    else {
+      if (!this.data.userInfo.avatarUrl) {
+        console.log("此处显示弹窗用户未登录");
+        return;
+      }
       this.setData({
         isCheckingInfo: true,
         title: "个人信息"
       })
     }
-  }
+  },
 })

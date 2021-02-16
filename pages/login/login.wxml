@@ -26,19 +26,18 @@
         </view>
         <view class="list" wx:else>
             <view class="item">
-                <text>性别: {{userInfo.gender?'男':'女'}}</text>
+                <text class="content">性别: {{userInfo.gender?'男':'女'}}</text>
             </view>
             <view class="item">
-                <text>年龄: 暂不能获取</text>
+                <text class="content">语析龄: 0碎</text>
             </view>
             <view class="item">
-                <text>所在地: {{userInfo.province}}</text>
+                <text class="content">所在地: {{userInfo.province}}</text>
             </view>
             <view class="item">
-                <text>手机号: 需后端给出</text>
-            </view>
-            <view class="item">
-                <text>微信: 暂不能获取</text>
+                <view class="content">mail: 
+                    <view class="{{mail?'':'mail'}}" >{{mail?mail:'点击填写'}}</view>
+                </view>
             </view>
         </view>
     </view>
