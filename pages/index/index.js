@@ -1,4 +1,6 @@
 // pages/index/index.js
+const { request } = require('../../utils/request');
+const { isLogin } = require('../../utils/wxApi')
 const app = getApp();
 
 Page({
@@ -7,64 +9,88 @@ Page({
    * 页面的初始数据
    */
   data: {
-    y: 999
+    y: 999,
+    winWidth: 0,
+    winHeight: 0,
+    // tab切换
+    currentTab: 0,
+    notesFromMe: {}
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  onShow() {
+    //如果登录才发送请求
+    if (isLogin()) {
+      request({
+        "url": '/',
+        "data": {
+          "FROM": "ME"
+        }
+      }).then(res => {
+        console.log(res);
+        wx.setStorageSync("notesFromMe", res.data.data);
+      }).catch(err => {
+        console.log(err);
+        wx.showToast({
+          title: '服务器走丢了...'
+        });
+      })
+    }
+    //读取本地缓存
+    let notesFromMe = wx.getStorageSync("notesFromMe") || {};
+    if(notesFromMe){
+      this.setData({
+        notesFromMe,
+      })
+    }
+    //初始化数据
     this.setData({
-      y: 999
+      currentTab: 0,
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onLoad: function () {
+    var that = this;
+    /**
+     * 获取系统信息
+     */
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+    });
   },
-
   /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    * 滑动切换tab
+    */
+  bindChange: function (e) {
+    var that = this;
+    that.setData({ currentTab: e.detail.current });
   },
-
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 点击tab切换
    */
-  onPullDownRefresh: function () {
-
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  dianji: function () {
+    console.log("1");
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  tapphotoSearch() {
+    //点击主页中间拍照搜题
+    wx.redirectTo({
+      url: '/pages/photosearch/photosearch',
+    });
+  },
 })
+
+
+
+

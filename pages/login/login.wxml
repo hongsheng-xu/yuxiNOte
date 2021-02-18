@@ -29,14 +29,14 @@
                 <text class="content">性别: {{userInfo.gender?'男':'女'}}</text>
             </view>
             <view class="item">
-                <text class="content">语析龄: 0碎</text>
+                <text class="content">语析龄: {{userInfo.yuxiAge}}碎</text>
             </view>
             <view class="item">
                 <text class="content">所在地: {{userInfo.province}}</text>
             </view>
             <view class="item">
                 <view class="content">mail: 
-                    <view class="{{mail?'':'mail'}}" >{{mail?mail:'点击填写'}}</view>
+                    <input placeholder-style="{{mail?'color:black':''}}" placeholder="{{mail?mail:'点击填写'}}" bindconfirm="confirmMail" bindinput="inputMail"></input>
                 </view>
             </view>
         </view>

@@ -1,3 +1,19 @@
-<!--pages/writenote/writenote.wxml-->
-<text>pages/writenote/writenote.wxml</text>
-<tabBar pageIndex="1"></tabBar>
+<!-- pages/index/index.wxml -->
+<!-- https://s3.ax1x.com/2021/02/06/yYJemV.png -->
+<bac>
+  
+</bac>
+<view class="warp">
+    <view class="bac">
+    </view>
+    <view class="editbox">
+      <view class="title">标题</view>
+      <view class="time">{{time}}</view>
+      <view class="divLine"></view>
+      <view class="edit_content">输入内容</view>
+      <view class="choose_way">
+         
+    </view>
+    </view>
+    
+</view>

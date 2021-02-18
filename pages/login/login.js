@@ -18,7 +18,8 @@ Page({
     if (userInfo) {
       this.setData({
         userInfo,
-        hasUserInfo: true
+        hasUserInfo: true,
+        mail: userInfo.mail
       })
     }
     //列表初始化
@@ -31,49 +32,69 @@ Page({
     console.log(e);
     var that = this;
     let { userInfo } = e.detail;
-    userInfo.province = pinyin(userInfo.province);
     if (e.detail.errMsg != "getUserInfo:fail auth deny") {
+      userInfo.province = pinyin(userInfo.province);
+      wx.showToast({
+        title: '登录中,请稍候...',
+        icon: 'none',
+      });
       wxLogin()
         .then(result => {
-          let data = {};
-          data.code = result.code;
-          data.avatarUrl = userInfo.avatarUrl;
-          data.gender = userInfo.gender;
-          data.nickName = userInfo.nickName;
-          data.province = userInfo.province;
-          console.log(data);
+          let code = result.code;
+          let { avatarUrl, gender, nickName, province } = userInfo;
           request({
             "url": "/login",
-            data,
+            data: {
+              code,
+              avatarUrl,
+              gender,
+              nickName,
+              province,
+            },
             "method": "POST"
           })
             .then(res => {
               console.log(res);
               if (res.data.code && res.data.code == 200) {
+                let { token, userInfo } = res.data.data;
                 that.setData({
-                  userInfo: res.data.userInfo,
+                  userInfo: userInfo,
                   hasUserInfo: true
                 })
                 wx.setStorageSync("userInfo", userInfo);
-                wx.setStorageSync("token", res.data.token)
+                wx.setStorageSync("token", token);
               } else {
                 //显示弹窗服务器获取id出错
-                console.log("显示弹窗服务器获取id出错");
+                wx.showToast({
+                  title: '服务器走丢了...',
+                  icon: 'none',
+                });
                 return;
               }
             })
-            .catch(err=>{
+            .catch(err => {
               console.log(err);
+              wx.showToast({
+                title: '服务器走丢了...',
+                icon: 'none',
+              });
               //服务器获取openid失败
             })
         })
         .catch(err => {
           console.log(err);
+          wx.showToast({
+            title: '服务器走丢了...',
+            icon: 'none',
+          });
           //显示弹窗.微信获取code失败
           return;
         })
     } else {
-      console.log("此处展示弹窗用户拒绝授权");
+      wx.showToast({
+        title: '您取消了登录!',
+        icon: 'none',
+      });
     }
   },
   checkInfo: function () {
@@ -94,4 +115,16 @@ Page({
       })
     }
   },
+  inputMail: function (e) {
+    this.setData({
+      mail: e.detail.value
+    })
+  },
+  confirmMail: function (e) {
+    let userInfo = wx.getStorageSync("userInfo") || "";
+    if (userInfo){
+      userInfo.mail = e.detail.value;
+      wx.setStorageSync("userInfo", userInfo);
+    }
+  }
 })

@@ -1,1 +1,30 @@
-/* pages/writenote/writenote.wxss */
+.bac {
+  position: absolute;
+  width: 100vw;
+  height: 90vh;
+  z-index: 0;
+  background-color: #458E86;
+}
+.editbox {
+  margin-top:2vh;
+  margin-left:5vw;
+  position: absolute;
+  z-index: 1;
+  width: 90vw;
+  height:80vh;
+  background:#fff;
+  border-radius: 5rpx;
+}
+.title{
+  color:#000;
+  font-size:20px;
+  font-weight:bold;
+}
+.divLine{
+  
+margin:0 auto;
+  background: #E0E3DA;
+  width: 90%;
+  height: 5rpx;
+ }
+ 

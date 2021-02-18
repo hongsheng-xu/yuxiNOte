@@ -1,48 +1,86 @@
 <!-- pages/index/index.wxml -->
 <bac></bac>
+<image class="photo_search" src="/images/index_camera.png" mode="widthFix"></image>
+<image class="photo_search photo_search_tap" bindtap="tapphotoSearch"></image>
 <view class="warp">
     <view class="bac"></view>
     <view class="content">
-        <view class="op">
-            <view class="by_me">由我创建</view>
-            <view class="by_share">来源分享</view>
-            <view class="weixi">微信文件</view>
+        <view class="swiper-tab">
+            <view class="swiper-tab-list" bindtap="swichNav">
+                <view class="{{currentTab==0 ? 'on' : ''}}" data-current="0">由我创建</view>
+            </view>
+            <view class="swiper-tab-list" bindtap="swichNav">
+                <view class="{{currentTab==1 ? 'on' : ''}}" data-current="1">来自分享</view>
+            </view>
+            <view class="swiper-tab-list" bindtap="swichNav">
+                <view class="{{currentTab==2 ? 'on' : ''}}" data-current="2">微信文件</view>
+            </view>
         </view>
+        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+            <swiper-item>
+                
+                <movable-area class="moveable-container" scale-area="false">
+                    <movable-view class="moveable-item-container" direction="vertical" out-of-bounds="false" damping="30" y="{{y}}">
+                        <view class="moveable-icon"></view>
+                        <view class="moveable-items">
+                            <view class="moveable-item">
+                                <text class="moveable-content">
+                                    <text class="moveable-thing">记录今天发生的趣事</text>
+                                    <text class="moveable-time">2020/10/23</text>
+                                </text>
+                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+                            </view>
+                            <view class="moveable-item">
+                                <text class="moveable-content">
+                                    <text class="moveable-thing">我有一个快递要拿</text>
+                                    <text class="moveable-time">2020/10/22</text>
+                                </text>
+                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+                            </view>
+                            <view class="moveable-item">
+                                <text class="moveable-content">
+                                    <text class="moveable-thing">晚上记得看比赛</text>
+                                    <text class="moveable-time">2020/10/21</text>
+                                </text>
+                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+                            </view>
+                            <view class="moveable-item">
+                                <text class="moveable-content">
+                                    <text class="moveable-thing">语析笔记很不错</text>
+                                    <text class="moveable-time">2020/10/20</text>
+                                </text>
+                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
+                            </view>
+                        </view>
+                    </movable-view>
+                </movable-area>
+            </swiper-item>
+            <swiper-item>
+                <view class="editbox">
+                    <image id="from_share" src="/images/squirrel.png" />
+                    <image id="no_note" src="/images/no_note.png" />
+                </view>
+            </swiper-item>
+            <swiper-item>
+                <view class="editbox">
+                    <text id="daoru1" style="font-size:30rpx">导入微信文件</text>
+                    <view class="pages3_content">
+                        <view style=" width:100rpx;height:100rpx;">
+                            <image src="/images/weixin_logo.png" class="weixin_logo" />
+                        </view>
+                        <view style="height:100rpx;width:400rpx;display: flex;justify-content: center;align-items: center;">
+                            <text style="font-weight:550;font-size:40rpx">导入微信文件</text>
+                        </view>
+                        <view>
+                            <text class="btn_daoru" bindtap="dianji">导入</text>
+                        </view>
+                    </view>
+                    <view class="divLine"></view>
+                    <image src="/images/squirrel.png" />
+                    <image src="/images/daoru.png" id="page3_daoru" />
+                </view>
+            </swiper-item>
+        </swiper>
     </view>
 </view>
-<movable-area class="moveable-container" scale-area="false">
-    <movable-view class="moveable-item-container" direction="vertical" out-of-bounds="false" damping="30" y="{{y}}">
-        <view class="moveable-icon"></view>
-        <view class="moveable-items">
-            <view class="moveable-item">
-                <text class="moveable-content">
-                    <text class="moveable-thing">记录今天发生的趣事</text>
-                    <text class="moveable-time">2020/10/23</text>
-                </text>
-                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-            </view>
-            <view class="moveable-item">
-                <text class="moveable-content">
-                    <text class="moveable-thing">我有一个快递要拿</text>
-                    <text class="moveable-time">2020/10/22</text>
-                </text>
-                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-            </view>
-            <view class="moveable-item">
-                <text class="moveable-content">
-                    <text class="moveable-thing">晚上记得看比赛</text>
-                    <text class="moveable-time">2020/10/21</text>
-                </text>
-                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-            </view>
-            <view class="moveable-item">
-                <text class="moveable-content">
-                    <text class="moveable-thing">语析笔记很不错</text>
-                    <text class="moveable-time">2020/10/20</text>
-                </text>
-                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-            </view>
-        </view>
-    </movable-view>
-</movable-area>
 <tabBar pageIndex="0"></tabBar>

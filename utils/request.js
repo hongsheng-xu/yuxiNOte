@@ -2,9 +2,9 @@ const baseUrl = "http://81.71.89.149:9000/yuyi";    //请求地址
 
 export const request = (params) => {
   return new Promise((resolve, reject) => {
-    const token = wx.getStorageSync('token');
+    const token = wx.getStorageSync('token') || "";
     wx.request({
-      header: { 'content-type': 'application/json', 'Authorization': token },
+      header: { 'content-type': 'application/json', 'token': token },
       method: 'GET',
       dataType: 'json',
       responseType: 'text',

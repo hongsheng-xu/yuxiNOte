@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
-    "pages/writenote/writenote"
+    "pages/writenote/writenote",
+    "pages/photosearch/photosearch"
   ],
   "window": {
     "navigationStyle": "custom"

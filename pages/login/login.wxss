@@ -76,12 +76,16 @@
 .login_page .userinfo-personal .item .content {
   padding-left: 140rpx;
   font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.login_page .userinfo-personal .item .content view {
+.login_page .userinfo-personal .item .content input {
   display: inline;
+  margin-left: 6rpx;
 }
 .login_page .userinfo-personal .item .content .mail {
-  color: #aaaaaa;
+  color: black;
 }
 .login_page .userinfo-personal .item button {
   display: inline-block;
