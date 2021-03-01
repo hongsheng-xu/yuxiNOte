@@ -1,19 +1,55 @@
 <!-- pages/index/index.wxml -->
 <!-- https://s3.ax1x.com/2021/02/06/yYJemV.png -->
-<bac>
-  
-</bac>
-<view class="warp">
-    <view class="bac">
+<bac url="index"></bac>
+<view class="bac"></view>
+<view class="editbox">
+  <input class="title" placeholder-style="color:black" placeholder="标题" maxlength="24" bindblur="changeTitle" value="{{note.title}}"></input>
+  <view class="time" bindtap="showOp">{{time}}</view>
+  <view class="divLine"></view>
+  <view class="edit_content">
+    <view hidden="{{md}}" class="swiper-item">
+      <textarea class="input_content" placeholder="输入内容" maxlength="-1" placeholder-style="color:rgb(123, 123, 123);font-size:36rpx;" auto-height="true" bindlinechange="addLine" bindinput="inputChange" bindfocus="focustext" show-confirm-bar="false" bindblur="blurtext" value="{{note.content}}"></textarea>
     </view>
-    <view class="editbox">
-      <view class="title">标题</view>
-      <view class="time">{{time}}</view>
-      <view class="divLine"></view>
-      <view class="edit_content">输入内容</view>
-      <view class="choose_way">
-         
+    <view hidden="{{!md}}" bind:tap="focustext" class="swiper-item" data-time="{{lastTapTime}}">
+      <template is="entry" data="{{...article}}" />
     </view>
+  </view>
+  <view class="choose_way"></view>
+</view>
+<view class="btn_bottom" style="bottom: {{opHeight}}">
+  <image class="btn_item" src="/images/sure.png" mode="widthFix" bindtap="hideOp"></image>
+  <image class="btn_item" src="/images/Aa.png" mode="widthFix" bindtap="choseFont">
+    <view class="font_size {{choseFont?'':'font_size_hide'}}">
+      <viwe class="font_size_Aa" data-size="1" catchtap="changeSiaze">Aa</viwe>
+      <viwe class="font_size_Aa" data-size="2" catchtap="changeSiaze">Aa</viwe>
+      <viwe class="font_size_Aa" data-size="3" catchtap="changeSiaze">Aa</viwe>
+      <view class="shape"></view>
+    </view>
+  </image>
+  <image class="btn_item" src="/images/insertimg.png" mode="widthFix" bindtap="chooseImageTap"></image>
+  <image class="btn_item {{isRecord?'isrecord':''}}" src="/images/speak.png" mode="widthFix" catchtouchstart="streamRecord" catchtouchend="streamRecordEnd"></image>
+  <image class="btn_item" src="/images/edit.png" mode="widthFix" bindtap="drawCanvas"></image>
+</view>
+<view class="draw-canvas {{isDarwing?'show-canvas':''}}">
+  <view class="icon-container" bind:tap="hideCanvas">
+    <view class="icon"></view>
+  </view>
+  <view class="op">
+    <view class="op_item" catch:tap="clearCanvas">
+      <image src="/images/clear.png" mode="heightFix"></image>
+    </view>
+    <view class="op_item" catch:tap="setBlod">
+      <image src="/images/Aa.png" mode="heightFix"></image>
+    </view>
+    <view class="op_item" catch:tap="setColor">
+      <image src="/images/color.png" mode="heightFix"></image>
+    </view>
+    <view class="op_item" catch:tap="setImage">
+      <image src="/images/finish.png" mode="heightFix"></image>
     </view>
     
+  </view>
+  <canvas canvas-id="canvas" disable-scroll='true' class="canvas" bindtouchstart="beginStroke" bindtouchmove="moveStroke" bindtouchend="endStroke"></canvas>
 </view>
+<!-- 引入towxml模版入口文件，并使用模版 -->
+<import src="/towxml/entry.wxml" />

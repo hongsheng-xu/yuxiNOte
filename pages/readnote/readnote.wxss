@@ -1,0 +1,58 @@
+page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #458e86;
+}
+.bac {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background-color: #458e86;
+}
+.editbox {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  padding: 0 30rpx;
+  width: 594rpx;
+  min-height: 76vh;
+  margin-bottom: 120rpx;
+  background: #edeeee;
+  border-radius: 10rpx;
+  transition: 0.7s ease-out;
+  animation: move 0.7s forwards;
+}
+.editbox .title {
+  color: black;
+  height: 80rpx;
+  padding-top: 30rpx;
+  font-size: 60rpx;
+}
+.editbox .time {
+  padding: 20rpx 0;
+  color: #7b7b7b;
+}
+.editbox .divLine {
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+  background: #f5f4f4;
+  height: 5rpx;
+}
+.edit {
+  width: 61rpx;
+  position: absolute;
+  z-index: 55;
+  right: 0rpx;
+  top: 0rpx;
+  transform: translate(45%, -45%);
+}
+@keyframes move {
+  0% {
+    transform: translateX(-120%) scale(0);
+  }
+  100% {
+    transform: translateX(0) scale(1) translate(-50%, 70rpx);
+  }
+}

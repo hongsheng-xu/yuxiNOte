@@ -41,7 +41,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.1",
-  "appid": "wx84537c254d1cfbfd",
+  "appid": "wx6a0489190daeef02",
   "projectname": "%E8%AF%AD%E6%9E%90%E7%AC%94%E8%AE%B0",
   "debugOptions": {
     "hidedInDevtools": []
@@ -50,6 +50,24 @@
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "dependencies": {
+    "app": {
+      "esDeps": [],
+      "wxmlDeps": [],
+      "wxssDeps": [],
+      "compDeps": [],
+      "wxsDeps": [],
+      "jsonDeps": [],
+      "files": [
+        "pages",
+        "components"
+      ]
+    },
+    "pages": {},
+    "subpackages": {}
+  },
+  "unusedFiles": [],
+  "data": {},
   "condition": {
     "plugin": {
       "list": []
@@ -77,6 +95,12 @@
         {
           "name": "pages/writenote/writenote",
           "pathName": "pages/writenote/writenote",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/readnote/readnote",
+          "pathName": "pages/readnote/readnote",
           "scene": null
         }
       ]

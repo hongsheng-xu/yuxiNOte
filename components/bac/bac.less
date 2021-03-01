@@ -1,6 +1,6 @@
-@titleColor : #fff;
-@bacColor   : var(--themeColor);
-@fontSize   : 1em;
+@titleColor    : #fff;
+@bacColor      : var(--themeColor);
+@fontSize      : 1em;
 @bottomPosition: 100rpx;
 
 .bac {
@@ -18,6 +18,14 @@
             top      : 50%;
             transform: translate(-50%, -50%);
         }
+
+        .bac_back {
+            position : absolute;
+            top      : 50%;
+            z-index  : 2;
+            transform: translate(10rpx, -50%);
+            height   : @fontSize;
+        }
     }
 
     .bac_barBot {
@@ -25,17 +33,18 @@
     }
 
     .bac_body {
-        position       : absolute;
-        z-index        : 1;
-        top            : 0;
-        height         : 100vh;
-        width          : 100vw;
+        position: absolute;
+        z-index : 1;
+        top     : 0;
+        height  : 100vh;
+        width   : 100vw;
     }
-    .bac_leaf{
+
+    .bac_leaf {
         position: fixed;
-        right: 0;
-        width: 50vw;
-        z-index: 1;
-        bottom: @bottomPosition;
+        right   : 0;
+        width   : 50vw;
+        z-index : 1;
+        bottom  : @bottomPosition;
     }
 }

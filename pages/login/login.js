@@ -40,6 +40,7 @@ Page({
       });
       wxLogin()
         .then(result => {
+          console.log(result);
           let code = result.code;
           let { avatarUrl, gender, nickName, province } = userInfo;
           request({
@@ -66,7 +67,7 @@ Page({
               } else {
                 //显示弹窗服务器获取id出错
                 wx.showToast({
-                  title: '服务器走丢了...',
+                  title: '服务器走丢了...1',
                   icon: 'none',
                 });
                 return;
@@ -75,7 +76,7 @@ Page({
             .catch(err => {
               console.log(err);
               wx.showToast({
-                title: '服务器走丢了...',
+                title: err.errMsg,
                 icon: 'none',
               });
               //服务器获取openid失败
@@ -84,7 +85,7 @@ Page({
         .catch(err => {
           console.log(err);
           wx.showToast({
-            title: '服务器走丢了...',
+            title: '服务器走丢了...3',
             icon: 'none',
           });
           //显示弹窗.微信获取code失败
@@ -126,5 +127,41 @@ Page({
       userInfo.mail = e.detail.value;
       wx.setStorageSync("userInfo", userInfo);
     }
+  },
+  onShareAppMessage: function (options) {
+    var shareObj = {
+      title: "语析笔记",        // 默认是小程序的名称(可以写slogan等)
+      path: '/pages/index/index',        // 默认是当前页面，必须是以‘/’开头的完整路径
+      imageUrl: '',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      success: function (res) {
+        // 转发成功之后的回调
+        console.log(res);
+        if (res.errMsg == 'shareAppMessage:ok') {
+          wx.showToast({
+            title: '分享成功,继续努力!',
+            icon: 'none',
+          });
+        }
+      },
+      fail: function (res) {
+        console.log(res);
+        // 转发失败之后的回调
+        if (res.errMsg == 'shareAppMessage:fail cancel') {
+          // 用户取消转发
+          wx.showToast({
+            title: '您取消了分享!',
+            icon: 'none',
+          });
+        } else if (res.errMsg == 'shareAppMessage:fail') {
+          // 转发失败，其中 detail message 为详细失败信息
+          wx.showToast({
+            title: '分享出错了,待会儿再试吧!',
+            icon: 'none',
+          });
+        }
+      }
+    };
+    // 返回shareObj
+    return shareObj;
   }
 })

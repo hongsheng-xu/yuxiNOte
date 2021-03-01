@@ -13,6 +13,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.bac .bac_barTop .bac_back {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translate(10rpx, -50%);
+  height: 1em;
+}
 .bac .bac_barBot {
   background-color: var(--themeColor);
 }

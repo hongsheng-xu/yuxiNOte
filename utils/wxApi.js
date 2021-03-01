@@ -1,3 +1,4 @@
+const baseUrl = 'http://81.71.89.149:9000/yuyi/'
 /**
  * 获取code,换屈openId
  */
@@ -27,7 +28,37 @@ const isLogin = () => {
     return false;
 }
 
+/**
+ *  上传文件
+ *  options:{
+ *      
+ *  }
+ */
+const wxUploadFile = (options) => {
+    return new Promise((resolve, reject) => {
+        const token = wx.getStorageSync("token");
+        wx.uploadFile({
+            url: baseUrl + '/upload',
+            filePath: options.filePath,
+            name: 'file',
+            header: {
+                'content-type': 'multipart/form-data',
+                'token': token
+            },
+            formData: null,
+            success: (result) => {
+                resolve(result)
+            },
+            fail: (error) => {
+                rejects(error)
+            }
+        });
+    })
+
+}
+
 module.exports = {
     wxLogin,
-    isLogin
+    isLogin,
+    wxUploadFile,
 }

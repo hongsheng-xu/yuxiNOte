@@ -7,6 +7,10 @@ Component({
     title: {
       type: String,
       value: "语析笔记"
+    },
+    url: {
+      type: String,
+      value: ""
     }
   },
 
@@ -22,7 +26,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    back (){
+      let url = `/pages/${this.properties.url}/${this.properties.url}`
+      wx.switchTab({
+        url,
+        fail: (e)=>{
+          console.log(e);
+          wx.redirectTo({
+            url,
+          });
+        },
+      });
+    },
   },
 
   /**

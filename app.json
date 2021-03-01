@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/login/login",
     "pages/writenote/writenote",
+    "pages/readnote/readnote",
     "pages/photosearch/photosearch"
   ],
   "window": {
@@ -36,5 +37,11 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.4",
+      "provider": "wx069ba97219f66d99"
+    }
+  }
 }

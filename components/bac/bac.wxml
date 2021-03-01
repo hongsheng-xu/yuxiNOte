@@ -1,6 +1,7 @@
 <!-- components/bac/bac.wxml -->
 <view class="bac">
   <view class="bac_barTop" style="padding-top:{{statusBarHeight}}px;height:{{statusFontHeight}}px">
+    <image class="bac_back" src="/images/back.png" mode="heightFix" bindtap="back" hidden="{{!url}}"></image>
     <text class=".bac_title" id="title">{{title}}</text>
   </view>
   <view class="bac_barBot" style="padding-top:{{statusBarHeight}}px"></view>

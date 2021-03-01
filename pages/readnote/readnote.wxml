@@ -1,0 +1,21 @@
+<bac url="index"></bac>
+<view class="bac"></view>
+<view class="editbox">
+  <image class="edit" src="/images/preview.png" mode="widthFix" bindtap="edit"></image>
+  <input class="title" placeholder-style="color:black" placeholder="标题" disabled="true" value="{{note.title}}"></input>
+  <view class="time">{{data.slice(time)}}</view>
+  <view class="divLine"></view>
+  <view class="edit_content">
+    <template is="entry" data="{{...article}}" />
+  </view>
+</view>
+<!-- 引入towxml模版入口文件，并使用模版 -->
+<import src="/towxml/entry.wxml" />
+<wxs module="date">
+var slice  = function (date) {
+    return date.slice(0,10);
+}
+module.exports={
+    slice: slice,
+}
+</wxs>

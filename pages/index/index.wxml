@@ -2,85 +2,95 @@
 <bac></bac>
 <image class="photo_search" src="/images/index_camera.png" mode="widthFix"></image>
 <image class="photo_search photo_search_tap" bindtap="tapphotoSearch"></image>
-<view class="warp">
-    <view class="bac"></view>
-    <view class="content">
-        <view class="swiper-tab">
-            <view class="swiper-tab-list" bindtap="swichNav">
-                <view class="{{currentTab==0 ? 'on' : ''}}" data-current="0">由我创建</view>
-            </view>
-            <view class="swiper-tab-list" bindtap="swichNav">
-                <view class="{{currentTab==1 ? 'on' : ''}}" data-current="1">来自分享</view>
-            </view>
-            <view class="swiper-tab-list" bindtap="swichNav">
-                <view class="{{currentTab==2 ? 'on' : ''}}" data-current="2">微信文件</view>
-            </view>
+<view class="bac"></view>
+<view class="content">
+    <view class="swiper-tab">
+        <view class="swiper-tab-list" bindtap="swichNav">
+            <view class="{{currentTab==0 ? 'on' : ''}}" data-current="0">由我创建</view>
         </view>
-        <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
-            <swiper-item>
-                
-                <movable-area class="moveable-container" scale-area="false">
-                    <movable-view class="moveable-item-container" direction="vertical" out-of-bounds="false" damping="30" y="{{y}}">
-                        <view class="moveable-icon"></view>
-                        <view class="moveable-items">
-                            <view class="moveable-item">
-                                <text class="moveable-content">
-                                    <text class="moveable-thing">记录今天发生的趣事</text>
-                                    <text class="moveable-time">2020/10/23</text>
-                                </text>
-                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-                            </view>
-                            <view class="moveable-item">
-                                <text class="moveable-content">
-                                    <text class="moveable-thing">我有一个快递要拿</text>
-                                    <text class="moveable-time">2020/10/22</text>
-                                </text>
-                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-                            </view>
-                            <view class="moveable-item">
-                                <text class="moveable-content">
-                                    <text class="moveable-thing">晚上记得看比赛</text>
-                                    <text class="moveable-time">2020/10/21</text>
-                                </text>
-                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-                            </view>
-                            <view class="moveable-item">
-                                <text class="moveable-content">
-                                    <text class="moveable-thing">语析笔记很不错</text>
-                                    <text class="moveable-time">2020/10/20</text>
-                                </text>
-                                <image class="moveable-delete" mode="widthFix" src="/images/delete.png" />
-                            </view>
-                        </view>
-                    </movable-view>
-                </movable-area>
-            </swiper-item>
-            <swiper-item>
-                <view class="editbox">
-                    <image id="from_share" src="/images/squirrel.png" />
-                    <image id="no_note" src="/images/no_note.png" />
+        <view class="swiper-tab-list" bindtap="swichNav">
+            <view class="{{currentTab==1 ? 'on' : ''}}" data-current="1">来自分享</view>
+        </view>
+        <view class="swiper-tab-list" bindtap="swichNav">
+            <view class="{{currentTab==2 ? 'on' : ''}}" data-current="2">微信文件</view>
+        </view>
+    </view>
+    <!-- style="height:{{winHeight - 31}}px" -->
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange" circular="true">
+        <swiper-item></swiper-item>
+        <swiper-item>
+            <view class="editbox">
+                <view class="img_bac" hidden="{{notesFromShare[0]['noteId']}}">
+                    <image class="squirrel" src="/images/squirrel.png" mode="widthFix" />
+                    <image class="no_note" src="/images/no_note.png" mode="widthFix" />
                 </view>
-            </swiper-item>
-            <swiper-item>
-                <view class="editbox">
-                    <text id="daoru1" style="font-size:30rpx">导入微信文件</text>
-                    <view class="pages3_content">
-                        <view style=" width:100rpx;height:100rpx;">
-                            <image src="/images/weixin_logo.png" class="weixin_logo" />
-                        </view>
-                        <view style="height:100rpx;width:400rpx;display: flex;justify-content: center;align-items: center;">
-                            <text style="font-weight:550;font-size:40rpx">导入微信文件</text>
-                        </view>
-                        <view>
-                            <text class="btn_daoru" bindtap="dianji">导入</text>
-                        </view>
+                <scroll-view scroll-y="true" style="height: 920rpx">
+                    <view class="moveable-items">
+                        <navigator class="moveable-item" wx:for="{{notesFromShare}}" wx:key="noteId" open-type="navigate" url="/pages/readnote/readnote?noteId={{item.noteId}}">
+                            <text class="moveable-content">
+                                <text class="moveable-thing">{{item.title}}</text>
+                                <text class="moveable-time">{{date.slice(item.updateTime)}}</text>
+                            </text>
+                            <image class="moveable-delete" mode="widthFix" src="/images/delete.png" catchtap="deleteNote" data-noteId="{{item.noteId}}" data-type="Share" data-title="{{item.title}}"/>
+                        </navigator>
+                    </view>
+                </scroll-view>
+            </view>
+        </swiper-item>
+        <swiper-item>
+            <view class="editbox">
+                <view class="import_note">
+                    <text id="import_wx" style="font-size:24rpx">导入微信文件</text>
+                    <view class="editbox_content">
+                        <image src="/images/weixin_logo.png" class="weixin_logo" mode="widthFix" />
+                        <text style="font-size:36rpx">导入微信文件</text>
+                        <text class="btn_import" bindtap="importFromWechat">导入</text>
                     </view>
                     <view class="divLine"></view>
-                    <image src="/images/squirrel.png" />
-                    <image src="/images/daoru.png" id="page3_daoru" />
+                    <view class="img_bac" hidden="{{notesFromWechat[0]['noteId']}}">
+                        <image class="squirrel" src="/images/squirrel.png" mode="widthFix" />
+                        <image src="/images/daoru.png" id="daoru" mode="widthFix" />
+                    </view>
                 </view>
-            </swiper-item>
-        </swiper>
-    </view>
+                <scroll-view scroll-y="true">
+                    <view class="moveable-items">
+                        <navigator class="moveable-item" wx:for="{{notesFromWechat}}" wx:key="noteId" open-type="navigate" url="/pages/readnote/readnote?noteId={{item.noteId}}">
+                            <text class="moveable-content">
+                                <text class="moveable-thing">{{item.title}}</text>
+                                <text class="moveable-time">{{date.slice(item.updateTime)}}</text>
+                            </text>
+                            <image class="moveable-delete" mode="widthFix" src="/images/delete.png" catchtap="deleteNote" data-noteId="{{item.noteId}}" data-type="Wechat" data-title="{{item.title}}"/>
+                        </navigator>
+                    </view>
+                    
+                </scroll-view>
+            </view>
+        </swiper-item>
+    </swiper>
 </view>
+<movable-area class="moveable-container" scale-area="false" hidden="{{currentTab!=0}}">
+    <movable-view class="moveable-item-container" direction="vertical" out-of-bounds="false" inertia="true" damping="150" y="{{y}}">
+        <view class="moveable-icon"></view>
+        <scroll-view scroll-y="true" style="height:50.59vh">
+            <view class="moveable-items">
+                <navigator class="moveable-item" wx:for="{{notesFromMe}}" wx:key="noteId" open-type="navigate" url="/pages/readnote/readnote?noteId={{item.noteId}}">
+                    <text class="moveable-content">
+                        <text class="moveable-thing">{{item.title}}</text>
+                        <text class="moveable-time">{{date.slice(item.updateTime)}}</text>
+                    </text>
+                    <image class="moveable-delete" mode="widthFix" src="/images/delete.png" catchtap="deleteNote" data-noteId="{{item.noteId}}" data-type="Me" data-title="{{item.title}}"/>
+                </navigator>
+            </view>
+        </scroll-view>
+    </movable-view>
+</movable-area>
+<view class="bac_white" hidden="{{currentTab!=0}}"></view>
 <tabBar pageIndex="0"></tabBar>
+<wxs module="date">
+var slice  = function (date) {
+    return date.slice(0,10);
+}
+module.exports={
+    slice: slice,
+}
+</wxs>

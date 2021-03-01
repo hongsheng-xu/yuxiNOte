@@ -36,7 +36,7 @@
             </view>
             <view class="item">
                 <view class="content">mail: 
-                    <input placeholder-style="{{mail?'color:black':''}}" placeholder="{{mail?mail:'点击填写'}}" bindconfirm="confirmMail" bindinput="inputMail"></input>
+                    <input placeholder-style="{{mail?'color:black':''}}" placeholder="{{mail?mail:'点击填写'}}" bindblur="confirmMail" bindinput="inputMail"></input>
                 </view>
             </view>
         </view>
